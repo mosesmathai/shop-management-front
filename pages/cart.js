@@ -159,6 +159,7 @@ export default function CartPage() {
   const [loadingProducts, setLoadingProducts] = useState(false);
   const [isSuccess,setIsSuccess] = useState(false);
   const [buttonText, setButtonText] = useState('Enter Payment');
+  const [paymentMode, setPaymentMode] = useState('');
   
   const form = useRef();
 
@@ -192,7 +193,7 @@ export default function CartPage() {
 
   async function submitOrder() {
     const data = {
-      cartProducts
+      cartProducts,paymentMode
     };   
     await axios.post('/api/checkout', data);
   }
@@ -298,9 +299,14 @@ export default function CartPage() {
                 <>Payment Section</>            
               </CartTitleWrapper>
               <form ref={form} onSubmit={payHandler}>
+                <StyledLabel htmlFor="paymentMode">Mode of Payment &#42;</StyledLabel>
+                <StyledSelect id='paymentMode' value={paymentMode} onChange={ev => setPaymentMode(ev.target.value)}>
+                  <option value="">Select</option>
+                  <option value="Mpesa">Mpesa</option>
+                  <option value="Cash">Cash</option>
+                </StyledSelect> 
                 <PaymentBtn
-                  type="submit"
-                    
+                  type="submit"  
                 >
                   {buttonText}
                 </PaymentBtn>
