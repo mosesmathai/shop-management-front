@@ -52,7 +52,7 @@ const StyledNav = styled.nav`
   left: 0;
   right: 0;
   padding: 65px 20px 20px 25px;
-  background: linear-gradient(to bottom right, #4B0082, #54038f, #7c0acf);
+  background-color: black;
   @media screen and (min-width: 768px) {
     display: flex;
     position: static;
