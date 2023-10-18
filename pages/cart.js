@@ -9,9 +9,7 @@ import Table from "@/components/Table";
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "@/components/CartContext";
 import axios from "axios";
-import Input from "@/components/Input";
 import Spinner from '@/components/Spinner';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link'
 
 
@@ -158,18 +156,12 @@ const StyledButtonLink = styled(Link)`
 export default function CartPage() {
   const {cartProducts,addProduct,removeProduct,clearCart} = useContext(CartContext);
   const [products, setProducts] = useState([]);
-  const [phone, setPhone] = useState('');
-  const [communication, setCommunication] = useState('');
-  const [location, setLocation] = useState('');
   const [loadingProducts, setLoadingProducts] = useState(false);
-  const [firstName, setFirstName] = useState();
-  const [lastName, setLastName] = useState();
   const [isSuccess,setIsSuccess] = useState(false);
-  const [buttonText, setButtonText] = useState('Place your Order');
+  const [buttonText, setButtonText] = useState('Enter Payment');
   
   const form = useRef();
 
-  const router = useRouter();
 
   function handleEmailNotification() {
     emailjs.sendForm('service_wfb1qby', 'template_kjjwzxr', form.current, 'G1vccmuK_P_2nr7Hv')
@@ -232,8 +224,8 @@ export default function CartPage() {
         <Center>
           <ColumnsWrapper>
             <Box>
-              <h1>Thanks for your order!</h1>
-              <p>An administrator will contact you shortly. Have a great day!</p>
+              <h1>Your request has been processed</h1>
+              <p>Keep up the good work!</p>
               <StyledButtonLink href="/">Return to Home Page</StyledButtonLink>
             </Box>
           </ColumnsWrapper>
