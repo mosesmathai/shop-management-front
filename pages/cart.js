@@ -103,6 +103,21 @@ export const NormalBtn = styled.button`
   padding: 3px 8px;
 `;
 
+const ResetBtn = styled.button`
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: white;
+  border: none;
+  background-color: red;
+  padding: 5px 10px;
+  opacity: 0.5;
+  border-radius: 3px;
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
+`;
+
 const QuantityLabel = styled.span`
   padding: 0 5px;
 `;
@@ -190,6 +205,10 @@ export default function CartPage() {
     removeProduct(id);
   }
 
+  function resetCart() {
+    clearCart();
+  }
+
 
   async function submitOrder() {
     const data = {
@@ -253,6 +272,7 @@ export default function CartPage() {
               <div>
                 {products?.length > 0 && (
                   <Table>
+                    <ResetBtn onClick={resetCart}>Reset Cart</ResetBtn>
                     <thead>
                       <tr>
                         <th>Product</th>
@@ -277,6 +297,7 @@ export default function CartPage() {
                             <NormalBtn onClick={() => moreOfThisProduct(product._id)}>+</NormalBtn>
                           </td> 
                           <PriceWrapper>Ksh {cartProducts.filter(id => id === product._id).length * product.price}</PriceWrapper>
+                          
                         </tr>
                       ))}
                       <tr>
