@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     return;
   }
 
-  const {cartProducts,paymentMode} = req.body;
+  const {cartProducts,paymentMode,amount} = req.body;
   await mongooseConnect();
   const productsIds = cartProducts;
   const uniqueIds = [...new Set(productsIds)];
@@ -31,7 +31,7 @@ export default async function handler(req, res) {
   }
 
   const orderDoc = await Order.create({
-    line_items,paymentMode,
+    line_items,paymentMode,amount
   });
   res.json(orderDoc);
 }

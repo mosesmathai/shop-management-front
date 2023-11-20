@@ -212,7 +212,7 @@ export default function CartPage() {
 
   async function submitOrder() {
     const data = {
-      cartProducts,paymentMode
+      cartProducts,paymentMode,amount
     };   
     await axios.post('/api/checkout', data);
   }
@@ -224,6 +224,14 @@ export default function CartPage() {
     const price = products.find(p => p._id === productId)?.price || 0;
     total += price
   }
+
+  const [amount, setAmount] = useState();
+  useEffect(() => {
+    if (cartProducts.length > 0) {
+      console.log(total);
+      setAmount(total);
+    }
+  }, [cartProducts,total]);
 
   useEffect(() => {
     if (cartProducts.length > 0) {
